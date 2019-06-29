@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CardBlockType from "../card/StyledCardBlock";
 import ShareContent from "./../share/ShareContent";
 import CardBlock from "../card/CardBlock";
@@ -20,10 +20,20 @@ const ProjectPackage = ({ title, children }) => {
   );
 };
 
+
+
 const ProjectCards = () => {
+  const [modal1Visible, setModal1Visible] = useState(false);
+  const [modal2Visible, setModal2Visible] = useState(false);
+  const [modal3Visible, setModal3Visible] = useState(false);
+  const [modal4Visible, setModal4Visible] = useState(false);
   return (
     <>
+
       <CardBlock
+        onClick={() => setModal1Visible(true)}
+        onCancel={() => setModal1Visible(false)}
+        visible={modal1Visible}
         salePrice={
           <NumberFormat
             value={699}
@@ -34,12 +44,16 @@ const ProjectCards = () => {
         }
         cardTitle="認同我們的理念，純粹贊助計畫！"
         people={139}
-        link="www.google.com"
       >
         支持台灣青年勇敢突破分數門檻，勇闖自己夢想的世界舞台！一起為台灣向這個世界用力發聲！支持計畫後，
         AmazingTalker 將贈等值抵用卷，可在 AmazingTalker 任意使用學習任何語言。
       </CardBlock>
+
+
       <CardBlock
+        onClick={() => setModal2Visible(true)}
+        onCancel={() => setModal2Visible(false)}
+        visible={modal2Visible}
         salePrice={
           <NumberFormat
             value={1200}
@@ -59,7 +73,6 @@ const ProjectCards = () => {
         cardTitle="《微痛轉職工程師》線上課程"
         people={139}
         countdown="3天"
-        link="www.google.com"
         onSale
       >
         <ProjectPackage title="包含項目">
@@ -71,7 +84,12 @@ const ProjectCards = () => {
           <li>英文履歷面 × 1</li>
         </ProjectPackage>
       </CardBlock>
+
+
       <CardBlock
+        onClick={() => setModal3Visible(true)}
+        onCancel={() => setModal3Visible(false)}
+        visible={modal3Visible}
         salePrice={
           <NumberFormat
             value={2400}
@@ -82,7 +100,6 @@ const ProjectCards = () => {
         }
         cardTitle="個人淨化空氣專案78折，現賺500元，未來售價2300元"
         people={139}
-        link="www.google.com"
       >
         <ProjectPackage title="包含項目">
           <li>數量：1件</li>
@@ -90,7 +107,11 @@ const ProjectCards = () => {
           <li>獨家贈禮專屬 Luft Cube導風帽(黑色) 1件</li>
         </ProjectPackage>
       </CardBlock>
+
       <CardBlock
+        onClick={() => setModal4Visible(true)}
+        onCancel={() => setModal4Visible(false)}
+        visible={modal4Visible}
         salePrice={
           <NumberFormat
             value={2800}
@@ -101,7 +122,6 @@ const ProjectCards = () => {
         }
         cardTitle="個人淨化空氣專案78折，現賺500元，未來售價2300元"
         people={139}
-        link="www.google.com"
       >
         <ProjectPackage title="包含項目">
           <li>數量：1件</li>
@@ -109,9 +129,11 @@ const ProjectCards = () => {
           <li>獨家贈禮專屬 Luft Cube導風帽(黑色) 1件</li>
         </ProjectPackage>
       </CardBlock>
+
       <CardBlockType>
         <ShareContent />
       </CardBlockType>
+
     </>
   );
 };

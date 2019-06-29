@@ -1,23 +1,14 @@
 import React, { useState, useCallback } from "react";
-import { Form, Input, Button } from "antd";
-import ShareResult from "./ShareResult";
-
-const EmailInput = ({ value, onChange }) => {
-  return (
-    <Input
-      name="email"
-      placeholder="輸入你的信箱..."
-      value={value}
-      onChange={onChange}
-    />
-  );
-};
+import { Form, Button } from "antd";
+import EmailInput from "../common/EmailInput";
+// import ShareResult from "./ShareResult";
 
 const ShareForm = () => {
   const [emailValue, setEmailValue] = useState();
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
+      console.log(emailValue);
     },
     [emailValue]
   );
@@ -26,6 +17,7 @@ const ShareForm = () => {
     <>
       <Form onSubmit={handleSubmit}>
         <EmailInput
+          className="InputError"
           value={emailValue}
           onChange={e => setEmailValue(e.currentTarget.value)}
         />

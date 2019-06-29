@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import Styled from "styled-components";
-import { Typography, Button } from "antd";
+import { Typography, Button, Modal, Form } from "antd";
 import StyledCardBlock from "./StyledCardBlock";
+import EmailInput from "../common/EmailInput";
 
 const { Title, Text } = Typography;
+
+const StyledLine = Styled.div`
+background-color: #dcdcdc;
+height: 1px;
+width: 100%;
+`
+
+const StyleTitleBG = Styled.div`
+background-color: #f7fbfe;
+padding: 24px 20px;
+`
+
+const StyledError = Styled.div`
+margin: 24px 0px;
+&::after {
+  content: '*此為必填欄位';
+  color: red;
+}
+`
+
+const StyledMargin = Styled.div`
+margin: 24px 0px;
+`
 
 const StyledCardTitle = Styled.p`
   font-size: 16px;
@@ -68,11 +92,33 @@ const CardBlock = ({
   onSale,
   cardTitle,
   people,
-  link,
   countdown,
-  children
+  children,
+  onClick,
+  onCancel,
+  visible,
+  handlePurchase
 }) => {
+  const [emailValue, setEmailValue] = useState();
+  const [error, setError] = useState(false);
+  const [discount, setDiscount] = useState(false);
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      console.log(emailValue);
+      if (emailValue === undefined || emailValue.length === 0 ) {
+        setError(true);
+        console.log(error);
+      } else {
+        setError(false);
+        setDiscount(true);
+        console.log("扣一百");
+      }
+    },
+    [emailValue, error]
+  );
   return (
+    <>
     <StyledCardBlock>
       {onSale && (
         <StyledSaleIcon>
@@ -106,10 +152,58 @@ const CardBlock = ({
         )}
         <StyledPeople>{people}人</StyledPeople>
       </StyledFlex>
-      <Button href={link} type="primary" size="large" style={{ width: "100%" }}>
+      <Button type="primary" size="large" style={{ width: "100%" }} onClick={onClick}>
         支持此專案
       </Button>
     </StyledCardBlock>
+            <Modal
+            centered
+            footer={null}
+            visible={visible}
+            onCancel={onCancel}
+            >
+              <StyledMargin style={{ textAlign: 'center', fontSize: '16px' }}><Text strong>支付項目</Text></StyledMargin>
+              <StyleTitleBG>{cardTitle}</StyleTitleBG>
+              <StyledMargin>{children}</StyledMargin>
+              <StyledLine />
+              <StyledMargin>請輸入信箱</StyledMargin>
+
+              <Form onSubmit={handleSubmit}>
+
+                { error ? (
+                  <>
+                  <StyledError>           
+                      <EmailInput
+                        style={{ border: 'red 1px solid'}}
+                        value={emailValue}
+                        onChange={e => setEmailValue(e.currentTarget.value)} />
+                    </StyledError> 
+                  </>
+                ) : (
+                  <>
+                  <StyledMargin>           
+                      <EmailInput
+                        value={emailValue}
+                        onChange={e => setEmailValue(e.currentTarget.value)} />
+                    </StyledMargin>
+                  </>
+                ) }
+
+                <div style={{ display: 'flex',  justifyContent: 'flex-end', alignItems: 'flex-end', lineHeight: '35px' }}>
+                  {discount ? (<Text>回饋折抵 -NT$100 =　</Text>) : ' ' }
+                    <Title
+                        level={3}
+                        style={{ marginRight: "5px", marginBottom: 0, color: "#1ed3e0", textAlign: 'right' }}>
+                        
+                        {salePrice}
+                    </Title> 
+                </div>
+                <div style={{ textAlign: 'right', marginTop: '16px' }}>
+                  <Button type="primary" size="large" htmlType="submit" style={{ width: "170px" }}>確定購買</Button>
+                </div>
+              </Form>
+            </Modal>
+    </>
   );
 };
 
