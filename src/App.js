@@ -1,36 +1,26 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from "react";
 import { Row, Col } from "antd";
 import IntroInfo from "./component/intro/IntroContent";
 import IntroContent from "./component/intro/IntroInfo";
 import Tab from "./component/tab/Tab";
 import Styled from "styled-components";
+import StyledContainer from "./component/layout/StyledContainer";
 import Banner from "./component/common/Banner";
+import "./App.css";
 
 const StyledIntro = Styled.div`
 padding: 40px 0px 28px;
 `;
 
-const Container = Styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0px 15px;
-  @media (min-width: 767px) {
-    max-width: 750px;
-  }
-  @media (min-width: 991px) {
-    max-width: 970px;
-  }
-  @media (min-width: 1199px) {
-    max-width: 1170px;
-  }
-`;
-
 const App = () => {
+  const [isShowing, setIsShowing] = useState(true);
+  const toggle = () => {
+    setIsShowing(false);
+  };
   return (
     <>
-      <Banner />
-      <Container>
+      <Banner onClick={toggle} isShowing={isShowing} />
+      <StyledContainer>
         <StyledIntro>
           <Row type="flex" gutter={{ md: 52, lg: 32 }}>
             <Col md={24} lg={16}>
@@ -41,12 +31,8 @@ const App = () => {
             </Col>
           </Row>
         </StyledIntro>
-        <Row>
-          <Col span={24}>
-            <Tab />
-          </Col>
-        </Row>
-      </Container>
+      </StyledContainer>
+      <Tab offsetTop={isShowing ? 40 : 0} />
     </>
   );
 };

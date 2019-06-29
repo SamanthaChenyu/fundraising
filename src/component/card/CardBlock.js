@@ -1,21 +1,19 @@
 import React from "react";
 import Styled from "styled-components";
 import { Typography, Button } from "antd";
+import StyledCardBlock from "./StyledCardBlock";
 
 const { Title, Text } = Typography;
-
-const StyledCardBlock = Styled.div`
-  border-radius: 5px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.15);
-  background-color: #ffffff;
-  padding: 32px;
-  margin-bottom: 20px;
-`;
 
 const StyledCardTitle = Styled.p`
   font-size: 16px;
   font-weight: bold;
   margin: 8px 0px 24px 0px;
+`;
+
+const StyledCardContext = Styled.p`
+  font-size: 14px;
+  text-align: justify;
 `;
 
 const StyledPeople = Styled.p`
@@ -64,49 +62,50 @@ font-weight: bold;
 margin: 0px 5px;
 `;
 
-const CardBlockType1 = ({
-  money,
-  beforePrice,
+const CardBlock = ({
+  salePrice,
+  listPrice,
+  onSale,
   cardTitle,
   people,
   link,
-  countdown
+  countdown,
+  children
 }) => {
   return (
     <StyledCardBlock>
-      <StyledSaleIcon>
-        <div>限時推薦</div>
-      </StyledSaleIcon>
+      {onSale && (
+        <StyledSaleIcon>
+          <div>限時推薦</div>
+        </StyledSaleIcon>
+      )}
       <StyledFlex>
         <Title
           level={3}
           style={{ marginRight: "5px", marginBottom: 0, color: "#1ed3e0" }}
         >
-          NT${money}
+          {salePrice}
         </Title>
-        <Text delete style={{ color: "rgba(0, 0, 0, 0.45)" }}>
-          NT${beforePrice}
-        </Text>
+        {listPrice && (
+          <Text delete style={{ color: "rgba(0, 0, 0, 0.45)" }}>
+            {listPrice}
+          </Text>
+        )}
       </StyledFlex>
 
       <StyledCardTitle>{cardTitle}</StyledCardTitle>
-      {countdown ? (
-        <>
-          <StyledFlex style={{ justifyContent: "space-between" }}>
-            <StyledPeople>
-              <Text type="secondary">優惠倒數</Text>
-              <StyledCountdown>{countdown}</StyledCountdown>
-            </StyledPeople>
-            <StyledPeople>{people}人</StyledPeople>
-          </StyledFlex>
-        </>
-      ) : (
-        <>
-          <StyledFlex style={{ justifyContent: "flex-end" }}>
-            <StyledPeople>{people}人</StyledPeople>
-          </StyledFlex>
-        </>
-      )}
+      <StyledCardContext>{children}</StyledCardContext>
+      <StyledFlex style={{ justifyContent: "space-between" }}>
+        {countdown ? (
+          <StyledPeople>
+            <Text type="warning">優惠倒數</Text>
+            <StyledCountdown>{countdown}</StyledCountdown>
+          </StyledPeople>
+        ) : (
+          <div />
+        )}
+        <StyledPeople>{people}人</StyledPeople>
+      </StyledFlex>
       <Button href={link} type="primary" size="large" style={{ width: "100%" }}>
         支持此專案
       </Button>
@@ -114,4 +113,4 @@ const CardBlockType1 = ({
   );
 };
 
-export default CardBlockType1;
+export default CardBlock;

@@ -14,9 +14,9 @@ const StyledTextForMoney = styled.p`
 const FundraisingAmount = ({ money, target, sponsors }) => {
   return (
     <Row type="flex" style={{ flexDirection: "column" }}>
-      <StyledTextForMoney>NT${money}</StyledTextForMoney>
+      <StyledTextForMoney>{money}</StyledTextForMoney>
       <Text style={{ color: "rgba(0, 0, 0, 0.45)", marginBottom: "20px" }}>
-        目標 NT${target}
+        目標 {target}
       </Text>
       <Text style={{ fontWeight: "bold" }}>贊助人數 {sponsors}</Text>
     </Row>

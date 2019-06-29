@@ -12,13 +12,19 @@ margin: 0 auto;
 `;
 
 const StyledTextBlock = Styled.div`
-width: 240px;
+width: 220px;
 margin: 24px auto;
+@media (min-width: 1199px) {
+  width: 240px;
+  }
 `;
 
 const StyledBlock = Styled.div`
-width: 280px;
+width: 220px;
 margin: 12px auto;
+@media (min-width: 1199px) {
+  width: 280px;
+  }
 `;
 
 const ShareContent = () => {

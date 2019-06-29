@@ -23,6 +23,10 @@
   color: #61dafb;
 }
 
+.ant-tabs-nav .ant-tabs-tab:last-child {
+  padding: 0px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -30,4 +34,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+.ant-tabs-extra-content {
+  line-height: 50px;
+  position: absolute;
+  right: 15px;
 }
