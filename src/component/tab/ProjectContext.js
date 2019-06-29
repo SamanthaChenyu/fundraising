@@ -64,6 +64,7 @@ const ProjectContext = () => {
       </StyledText>
       <StyledTitle>你會獲得</StyledTitle>
       <img src={TestImg} alt="ad" style={{ width: "100%" }} />
+      <StyledText />
     </>
   );
 };

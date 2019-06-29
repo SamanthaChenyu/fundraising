@@ -3,9 +3,12 @@ import ReactPlayer from "react-player";
 import styled from "styled-components";
 
 const StyledIntroContent = styled.div`
-  height: 100%;
+  height: 200px;
   background-color: #192129;
   div {
+    height: 100%;
+  }
+  @media (min-width: 767px) {
     height: 100%;
   }
 `;

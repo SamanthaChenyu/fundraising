@@ -9,7 +9,10 @@ import Banner from "./component/common/Banner";
 import "./App.css";
 
 const StyledIntro = Styled.div`
-padding: 40px 0px 28px;
+padding: 20px 0px 28px;
+@media (min-width: 767px) {
+  padding: 40px 0px 28px;
+}
 `;
 
 const App = () => {
@@ -32,7 +35,7 @@ const App = () => {
           </Row>
         </StyledIntro>
       </StyledContainer>
-      <Tab offsetTop={isShowing ? 40 : 0} />
+      <Tab offsetTop={isShowing ? 50 : 0} />
     </>
   );
 };

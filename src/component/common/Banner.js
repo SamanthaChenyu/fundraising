@@ -1,5 +1,5 @@
 import React from "react";
-import { Affix, Typography } from "antd";
+import { Affix, Typography, Icon } from "antd";
 import Styled from "styled-components";
 import NumberFormat from "react-number-format";
 
@@ -22,7 +22,6 @@ align-items: center;
     width: 600px;
     display: flex;
     margin: 0px auto;
-    height: 40px;
     padding: 0px;
   }
 `;
@@ -71,7 +70,7 @@ const Banner = ({ onClick, isShowing }) => {
               </Text>
               <StyledCheckArrow>查看方案 ></StyledCheckArrow>
             </StyledText>
-            <StyledClose onClick={onClick}>X</StyledClose>
+            <StyledClose onClick={onClick}><Icon type="close" /></StyledClose>
           </StyledBlock>
         </Affix>
       ) : (

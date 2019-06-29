@@ -7,7 +7,10 @@ const StyledCardBlock = Styled.div`
   padding: 32px;
   display: inline-block;
   width: 100%;
-  margin: 15px 0px;
+  margin: 10px 0px;
+  @media (min-width: 767px) {
+    margin: 15px 0px;
+  }
 `;
 
 export default StyledCardBlock;

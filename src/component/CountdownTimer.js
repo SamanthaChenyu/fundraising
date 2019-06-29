@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/zh-cn";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+    padding: 0px 1px; 
+    @media (min-width: 1199px) {
+            padding: 0px 5px;
+        }
+`;
 
 const CountdownTimer = ({ due, isDate }) => {
   const [left, setLeft] = useState(moment(due).fromNow());
@@ -14,11 +22,11 @@ const CountdownTimer = ({ due, isDate }) => {
     }, 1000);
   }, []);
   return (
-    <div style={{ display: "flex" }}>
+    <div>
       {isDate ? (
-        <div style={{ padding: "0px 5px" }}>{left}</div>
+        <StyledDiv> {left} </StyledDiv>
       ) : (
-        <div style={{ padding: "0px 5px" }}>{due}</div>
+        <StyledDiv> {due} </StyledDiv>
       )}
     </div>
   );

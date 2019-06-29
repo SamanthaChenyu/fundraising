@@ -8,6 +8,7 @@ import CardBlockType from "../card/StyledCardBlock";
 import ShareContent from "../share/ShareContent";
 import StudentSuggestionsContext from "./StudentSuggestionsContext";
 import StyledContainer from "../layout/StyledContainer";
+import MediaQuery from 'react-responsive';
 
 const StyledTab = ({ children, onClick }) => {
   return (
@@ -37,6 +38,7 @@ const Tab = ({ offsetTop }) => {
       <Tabs
         renderTabBar={({ tabBarExtraContent, activeKey, onChange }) => {
           return (
+            <>
             <Affix offsetTop={offsetTop} onChange={affixed => setShow(affixed)}>
               <div
                 style={{
@@ -60,21 +62,43 @@ const Tab = ({ offsetTop }) => {
                   <StyledTab onClick={() => onChange("studentSuggestions")}>
                     學員推薦
                   </StyledTab>
-                  {tabBarExtraContent}
+                    {tabBarExtraContent}      
                 </StyledContainer>
               </div>
             </Affix>
+            </>
           );
         }}
         tabBarExtraContent={
           show ? (
-            <Button
-              onClick={() => setActivePane("support")}
-              type="primary"
-              style={{ padding: "0px 24px" }}
-            >
-              支持專案
-            </Button>
+            <>
+            <MediaQuery query="(min-device-width: 767px)">
+              <Button
+                onClick={() => setActivePane("support")}
+                type="primary"
+                style={{ padding: "0px 24px" }}
+              >
+                支持專案
+              </Button>
+            </MediaQuery>
+            <MediaQuery query="(max-device-width: 766px)">
+              <Button
+                  onClick={() => setActivePane("support")}
+                  type="primary"
+                  style={{ 
+                    height: '40px',
+                    fontSize: '16px',
+                    position: 'fixed',
+                    bottom: '15px',
+                    zIndex: '9999',
+                    width: '90%',
+                    left: '50%',
+                    transform: 'translateX(-50%)'
+                  }}
+              >支持專案
+              </Button>
+            </MediaQuery>
+            </>
           ) : (
             <div />
           )

@@ -14,7 +14,7 @@ const StyledCountdownTimer = styled.div`
 
 const Line = styled.div`
   border-right: 1px solid #d9d9d9;
-  margin: 0px 10px 0px 5px;
+  margin:0px 7px 0px 5px;
 `;
 
 const StyledSharePosition = styled.div`

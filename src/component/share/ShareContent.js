@@ -14,7 +14,8 @@ margin: 0 auto;
 const StyledTextBlock = Styled.div`
 width: 220px;
 margin: 24px auto;
-@media (min-width: 1199px) {
+text-align: justify;
+@media (min-width: 769px) {
   width: 240px;
   }
 `;
