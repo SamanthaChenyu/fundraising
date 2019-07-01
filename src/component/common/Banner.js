@@ -12,10 +12,12 @@ cursor: pointer;
 `;
 
 const StyledText = Styled.div`
-width: 91%;
-margin: 0px 2px;
+width: 90%;
 height: 50px;
+text-align: center;
+font-size: 13px;
 padding: 5px 0px;
+line-height: 20px;
 display: block;
 align-items: center;
   @media (min-width: 767px) {
@@ -35,12 +37,13 @@ const StyledClose = Styled.div`
 color: #fff;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 20px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     cursor: pointer;
   @media (min-width: 767px) {
-    padding: 5px 24px;
+    padding: 0px 24px;
   }
 `;
 
@@ -70,7 +73,9 @@ const Banner = ({ onClick, isShowing }) => {
               </Text>
               <StyledCheckArrow>查看方案 ></StyledCheckArrow>
             </StyledText>
-            <StyledClose onClick={onClick}><Icon type="close" /></StyledClose>
+            <StyledClose onClick={onClick}>
+              <Icon type="close" />
+            </StyledClose>
           </StyledBlock>
         </Affix>
       ) : (

@@ -24,7 +24,9 @@ const UpdateContext = () => {
       <Timeline>
         <Timeline.Item>
           <StyledTimeLimeItem>
-            <Title level={4}>500萬延伸解鎖目標公開！</Title>
+            <Title level={4} style={{ lineHeight: "1.5" }}>
+              500萬延伸解鎖目標公開！
+            </Title>
             <Text type="secondary">2019/06/13</Text>
             <StyledText>
               <Text>

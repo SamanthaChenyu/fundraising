@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Button } from "antd";
 import Styled from "styled-components";
-import MediaQuery from 'react-responsive';
+import MediaQuery from "react-responsive";
 
 const StyledMBOpenButton = Styled.div`
   margin-bottom: 41px;
@@ -14,12 +14,12 @@ const StyledMBOpenButton = Styled.div`
     top: -200px;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9) 70%, #ffffff);
   }
-`
+`;
 
 const StyledMBContentBlock = Styled.div`
 height: 515px;
 overflow: hidden;
-`
+`;
 
 const StyledTabContentBlock = Styled.div`
   padding: 24px 0px 40px;
@@ -56,7 +56,7 @@ const StyledSideBlock = Styled.div`
 `;
 
 const TabContentBlock = ({ contentBlock, sideBlock, type }) => {
-  const [ open , setOpen ] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <>
       <StyledTabContentBlock>
@@ -70,30 +70,32 @@ const TabContentBlock = ({ contentBlock, sideBlock, type }) => {
           ) : (
             <>
               <MediaQuery query="(min-device-width: 767px)">
-                <Col md={24} lg={16}>
+                <Col md={24} lg={16} style={{ margin: "15px auto" }}>
                   {contentBlock}
                 </Col>
               </MediaQuery>
 
               <MediaQuery query="(max-device-width: 766px)">
-
-                { open ? (
+                {open ? (
                   <Col md={24} lg={16}>
                     {contentBlock}
-                  </Col>                
+                  </Col>
                 ) : (
                   <>
-                    <StyledMBContentBlock>
-                        {contentBlock}            
-                    </StyledMBContentBlock>                
+                    <StyledMBContentBlock>{contentBlock}</StyledMBContentBlock>
                     <StyledMBOpenButton>
-                      <Button size="large" style={{ width: '100%' }} onClick={ () => setOpen(true) }>展開內容</Button>
-                    </StyledMBOpenButton>   
-                  </>                 
-                ) }
-
+                      <Button
+                        size="large"
+                        style={{ width: "100%" }}
+                        onClick={() => setOpen(true)}
+                      >
+                        展開內容
+                      </Button>
+                    </StyledMBOpenButton>
+                  </>
+                )}
               </MediaQuery>
-              
+
               <StyledSideBlock>{sideBlock}</StyledSideBlock>
             </>
           )}

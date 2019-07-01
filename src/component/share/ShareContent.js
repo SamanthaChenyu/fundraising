@@ -43,7 +43,7 @@ const ShareContent = () => {
         </Text>
       </StyledTextBlock>
       <StyledBlock>
-        <ShareForm />
+        <ShareForm reward={0} />
       </StyledBlock>
     </>
   );

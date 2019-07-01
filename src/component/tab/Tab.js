@@ -8,7 +8,7 @@ import CardBlockType from "../card/StyledCardBlock";
 import ShareContent from "../share/ShareContent";
 import StudentSuggestionsContext from "./StudentSuggestionsContext";
 import StyledContainer from "../layout/StyledContainer";
-import MediaQuery from 'react-responsive';
+import MediaQuery from "react-responsive";
 
 const StyledTab = ({ children, onClick }) => {
   return (
@@ -22,6 +22,7 @@ const StyledTab = ({ children, onClick }) => {
         margin: "0px 5px",
         height: "50px"
       }}
+      className="focus"
       onClick={onClick}
     >
       {children}
@@ -39,65 +40,69 @@ const Tab = ({ offsetTop }) => {
         renderTabBar={({ tabBarExtraContent, activeKey, onChange }) => {
           return (
             <>
-            <Affix offsetTop={offsetTop} onChange={affixed => setShow(affixed)}>
-              <div
-                style={{
-                  background: "white",
-                  borderBottom: "1px solid #dadada"
-                }}
+              <Affix
+                offsetTop={offsetTop}
+                onChange={affixed => setShow(affixed)}
               >
-                <StyledContainer
+                <div
                   style={{
-                    display: "flex",
-                    height: "50px",
-                    position: "relative"
+                    background: "white",
+                    borderBottom: "1px solid #dadada"
                   }}
                 >
-                  <StyledTab onClick={() => onChange("projectContent")}>
-                    計畫內容
-                  </StyledTab>
-                  <StyledTab onClick={() => onChange("projectUpdates")}>
-                    計畫更新
-                  </StyledTab>
-                  <StyledTab onClick={() => onChange("studentSuggestions")}>
-                    學員推薦
-                  </StyledTab>
-                    {tabBarExtraContent}      
-                </StyledContainer>
-              </div>
-            </Affix>
+                  <StyledContainer
+                    style={{
+                      display: "flex",
+                      height: "50px",
+                      position: "relative"
+                    }}
+                  >
+                    <StyledTab onClick={() => onChange("projectContent")}>
+                      計畫內容
+                    </StyledTab>
+                    <StyledTab onClick={() => onChange("projectUpdates")}>
+                      計畫更新
+                    </StyledTab>
+                    <StyledTab onClick={() => onChange("studentSuggestions")}>
+                      學員推薦
+                    </StyledTab>
+                    {tabBarExtraContent}
+                  </StyledContainer>
+                </div>
+              </Affix>
             </>
           );
         }}
         tabBarExtraContent={
           show ? (
             <>
-            <MediaQuery query="(min-device-width: 767px)">
-              <Button
-                onClick={() => setActivePane("support")}
-                type="primary"
-                style={{ padding: "0px 24px" }}
-              >
-                支持專案
-              </Button>
-            </MediaQuery>
-            <MediaQuery query="(max-device-width: 766px)">
-              <Button
+              <MediaQuery query="(min-device-width: 767px)">
+                <Button
                   onClick={() => setActivePane("support")}
                   type="primary"
-                  style={{ 
-                    height: '40px',
-                    fontSize: '16px',
-                    position: 'fixed',
-                    bottom: '15px',
-                    zIndex: '9999',
-                    width: '90%',
-                    left: '50%',
-                    transform: 'translateX(-50%)'
+                  style={{ padding: "0px 24px" }}
+                >
+                  支持專案
+                </Button>
+              </MediaQuery>
+              <MediaQuery query="(max-device-width: 766px)">
+                <Button
+                  onClick={() => setActivePane("support")}
+                  type="primary"
+                  style={{
+                    height: "40px",
+                    fontSize: "16px",
+                    position: "fixed",
+                    bottom: "15px",
+                    zIndex: "9999",
+                    width: "90%",
+                    left: "50%",
+                    transform: "translateX(-50%)"
                   }}
-              >支持專案
-              </Button>
-            </MediaQuery>
+                >
+                  支持專案
+                </Button>
+              </MediaQuery>
             </>
           ) : (
             <div />

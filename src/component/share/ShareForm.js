@@ -1,16 +1,25 @@
 import React, { useState, useCallback } from "react";
-import { Form, Button } from "antd";
+import { Form, Button, Modal, Typography } from "antd";
 import EmailInput from "../common/EmailInput";
-// import ShareResult from "./ShareResult";
+import money from "../../images/money.png";
+import ShareClipboard from "./ShareClipboard";
 
-const ShareForm = () => {
+const { Title } = Typography;
+
+const ShareForm = ({ reward }) => {
   const [emailValue, setEmailValue] = useState();
+  const [modal1Visible, setModal1Visible] = useState(false);
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
       console.log(emailValue);
+      if (emailValue === undefined || emailValue.length === 0) {
+        console.log("格式不符合");
+      } else {
+        setModal1Visible(true);
+      }
     },
-    [emailValue]
+    [emailValue, modal1Visible]
   );
 
   return (
@@ -25,7 +34,29 @@ const ShareForm = () => {
           獲得連結 並 查看回饋
         </Button>
       </Form>
-      {/* <ShareResult email="abc123@mail.com" reward={0} /> */}
+      <Modal
+        title={
+          <div style={{ textAlign: "center", fontWeight: "bold" }}>
+            {emailValue}
+          </div>
+        }
+        centered
+        visible={modal1Visible}
+        footer={null}
+        onCancel={() => setModal1Visible(false)}
+      >
+        <p>回饋累計</p>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Title level={4}>{reward} 元</Title>
+          <img
+            src={money}
+            style={{ width: "20px", height: "20px" }}
+            alt="money"
+          />
+        </div>
+        <p>你的邀請連結</p>
+        <ShareClipboard />
+      </Modal>
     </>
   );
 };
