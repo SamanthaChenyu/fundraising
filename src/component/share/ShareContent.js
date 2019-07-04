@@ -30,7 +30,7 @@ margin: 12px auto;
 
 const ShareContent = () => {
   return (
-    <>
+    <div style={{ padding: "20px" }}>
       <StyledShareCashImage>
         <img src={ShareCashImage} alt="cash" style={{ width: "100%" }} />
       </StyledShareCashImage>
@@ -45,7 +45,7 @@ const ShareContent = () => {
       <StyledBlock>
         <ShareForm reward={0} />
       </StyledBlock>
-    </>
+    </div>
   );
 };
 

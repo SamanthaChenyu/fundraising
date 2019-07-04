@@ -46,3 +46,11 @@
     width: 100%;
   }
 }
+
+.TranslateBackground:nth-child(2) {
+  background-color: aquamarine;
+}
+
+.InitialBackground:nth-child(2) {
+  background-color: #fff;
+}

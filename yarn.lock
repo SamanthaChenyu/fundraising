@@ -5521,7 +5521,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
-lodash.throttle@^4.0.0:
+lodash.throttle@^4.0.0, lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
@@ -7215,6 +7215,15 @@ qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
+query-string@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-5.1.1.tgz#a78c012b71c17e05f2e3fa2319dd330682efb3cb"
+  integrity sha512-gjWOsm2SoGlgLEdAGt7a6slVOk9mGiXmPFMqrEhLQ68rhQuBnpfs3+EmlvqKyxnCo9/PPlF+9MtY02S1aFg+Jw==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    object-assign "^4.1.0"
+    strict-uri-encode "^1.0.0"
+
 querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
@@ -7834,6 +7843,14 @@ react-scripts@3.0.1:
   optionalDependencies:
     fsevents "2.0.6"
 
+react-scroll@^1.7.12:
+  version "1.7.12"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.7.12.tgz#6bd453d04ec70e03bebe04d8b43b5d91e3d776cc"
+  integrity sha512-hvi3MixtYQC1FADODqWx6MSYaShBbsq7ElQBny/pmzrGtF4ubGLuDOGpzP3mvJjWZ66Cepujt4PBjysYV3itwg==
+  dependencies:
+    lodash.throttle "^4.1.1"
+    prop-types "^15.5.8"
+
 react-simple-video-player@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-simple-video-player/-/react-simple-video-player-1.0.0.tgz#96a2f2777da3009c3a73904fdc16f35f4ddd2e0e"
@@ -8299,6 +8316,13 @@ serialize-javascript@^1.4.0, serialize-javascript@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-1.7.0.tgz#d6e0dfb2a3832a8c94468e6eb1db97e55a192a65"
 
+serialize-query-params@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/serialize-query-params/-/serialize-query-params-0.1.3.tgz#affd7f96845a0c753b9975c28fefbaeb4806fd94"
+  integrity sha512-TyxcNmHN+enyyjN/s/kSYRK+F3lP7JBvWy7+SrYsdVgnLY0fsfyoCYhCDq1q7bDiwzDO2DPz3uCN6nZfpkQfFA==
+  dependencies:
+    query-string "^5.0.0"
+
 serve-index@^1.7.2:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/serve-index/-/serve-index-1.9.1.tgz#d3768d69b1e7d82e5ce050fff5b453bea12a9239"
@@ -8650,6 +8674,11 @@ stream-http@^2.7.2:
 stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
+
+strict-uri-encode@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
+  integrity sha1-J5siXfHVgrH1TmWt3UNS4Y+qBxM=
 
 string-convert@^0.2.0:
   version "0.2.1"
@@ -9208,6 +9237,13 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-query-params@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/use-query-params/-/use-query-params-0.3.3.tgz#358bee7235964fd8456e4f45dd39eebe5f668ccc"
+  integrity sha512-WnuR6ks8XZfKaFJIljskhJuuhtellHkLSnMRIusYBnah+zTqZuPilGATY92I7lf38hazZm34QZ+kDM3KjfaSPg==
+  dependencies:
+    serialize-query-params "^0.1.3"
 
 use@^3.1.0:
   version "3.1.1"

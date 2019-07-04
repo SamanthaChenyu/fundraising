@@ -47,7 +47,7 @@ color: #fff;
   }
 `;
 
-const Banner = ({ onClick, isShowing }) => {
+const Banner = ({ onClose, isShowing, onSupportClick }) => {
   return (
     <>
       {isShowing ? (
@@ -71,9 +71,11 @@ const Banner = ({ onClick, isShowing }) => {
                   prefix={"NT$"}
                 />
               </Text>
-              <StyledCheckArrow>查看方案 ></StyledCheckArrow>
+              <StyledCheckArrow onClick={onSupportClick}>
+                查看方案 >
+              </StyledCheckArrow>
             </StyledText>
-            <StyledClose onClick={onClick}>
+            <StyledClose onClick={onClose}>
               <Icon type="close" />
             </StyledClose>
           </StyledBlock>

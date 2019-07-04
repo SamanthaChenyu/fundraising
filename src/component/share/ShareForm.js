@@ -19,7 +19,7 @@ const ShareForm = ({ reward }) => {
         setModal1Visible(true);
       }
     },
-    [emailValue, modal1Visible]
+    [emailValue]
   );
 
   return (

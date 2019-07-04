@@ -5,7 +5,7 @@ import CardBlock from "../card/CardBlock";
 import Styled from "styled-components";
 import NumberFormat from "react-number-format";
 
-const StyleTitle = Styled.p`
+const StyleTitle = Styled.div`
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: bold;
@@ -20,8 +20,6 @@ const ProjectPackage = ({ title, children }) => {
   );
 };
 
-
-
 const ProjectCards = () => {
   const [modal1Visible, setModal1Visible] = useState(false);
   const [modal2Visible, setModal2Visible] = useState(false);
@@ -29,7 +27,6 @@ const ProjectCards = () => {
   const [modal4Visible, setModal4Visible] = useState(false);
   return (
     <>
-
       <CardBlock
         onClick={() => setModal1Visible(true)}
         onCancel={() => setModal1Visible(false)}
@@ -49,8 +46,8 @@ const ProjectCards = () => {
         AmazingTalker 將贈等值抵用卷，可在 AmazingTalker 任意使用學習任何語言。
       </CardBlock>
 
-
       <CardBlock
+        BannerClick={false}
         onClick={() => setModal2Visible(true)}
         onCancel={() => setModal2Visible(false)}
         visible={modal2Visible}
@@ -84,7 +81,6 @@ const ProjectCards = () => {
           <li>英文履歷面 × 1</li>
         </ProjectPackage>
       </CardBlock>
-
 
       <CardBlock
         onClick={() => setModal3Visible(true)}
@@ -133,7 +129,6 @@ const ProjectCards = () => {
       <CardBlockType>
         <ShareContent />
       </CardBlockType>
-
     </>
   );
 };
