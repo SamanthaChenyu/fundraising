@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
-import { Form, Button, Modal, Typography } from "antd";
-import EmailInput from "../common/EmailInput";
+import { Button, Form, Modal, Typography } from "antd";
+import React, { useCallback, useState } from "react";
 import money from "../../images/money.png";
+import EmailInput from "../common/EmailInput";
 import ShareClipboard from "./ShareClipboard";
 
 const { Title } = Typography;

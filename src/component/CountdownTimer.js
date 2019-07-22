@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/zh-cn";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -20,7 +20,7 @@ const CountdownTimer = ({ due, isDate }) => {
           .fromNow()
       );
     }, 1000);
-  }, []);
+  }, [due]);
   return (
     <div>
       {isDate ? (

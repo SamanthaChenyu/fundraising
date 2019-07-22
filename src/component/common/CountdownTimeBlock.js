@@ -1,5 +1,5 @@
-import React from "react";
 import { Typography } from "antd";
+import React from "react";
 import styled from "styled-components";
 import CountdownTimer from "../CountdownTimer";
 import Share from "./../share/Share";

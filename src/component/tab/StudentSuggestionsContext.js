@@ -1,8 +1,8 @@
+import { Avatar, Comment } from "antd";
 import React from "react";
-import { Comment, Avatar } from "antd";
-import Styled from "styled-components";
+import styled from "styled-components";
 
-const StyledTitle = Styled.p`
+const StyledTitle = styled.p`
     font-size: 16px;
     font-weight: bold;
     margin: 12px 0px;

@@ -1,5 +1,5 @@
-import React from "react";
 import { Row, Typography } from "antd";
+import React from "react";
 import styled from "styled-components";
 
 const { Text } = Typography;

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Input } from "antd";
-import Clipboard from "react-clipboard.js";
-import Styled from "styled-components";
 
-const StyledClipboard = Styled.div`
+import { Input } from "antd";
+import React, { useEffect, useState } from "react";
+import Clipboard from "react-clipboard.js";
+import styled from "styled-components";
+
+const StyledClipboard = styled.div`
 display: flex;
 position: relative;
 `;

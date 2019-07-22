@@ -1,17 +1,17 @@
-import React, { useState, useContext } from "react";
-import { Tabs, Button, Affix, Badge } from "antd";
-import TabContentBlock from "./TabContentBlock";
-import ProjectContext from "./ProjectContext";
-import ProjectCards from "./ProjectCards";
-import UpdateContext from "./UpdateContext";
-import CardBlockType from "../card/StyledCardBlock";
-import ShareContent from "../share/ShareContent";
-import StudentSuggestionsContext from "./StudentSuggestionsContext";
-import StyledContainer from "../layout/StyledContainer";
+import { Affix, Badge, Button, Tabs } from "antd";
+import React, { useContext, useState } from "react";
 import MediaQuery from "react-responsive";
-import { PROJECT_TIMELINE } from "../../data";
-import { TabContext } from "./TabContext";
 import { Element } from "react-scroll";
+import { PROJECT_TIMELINE } from "../../data";
+import CardBlockType from "../card/StyledCardBlock";
+import StyledContainer from "../layout/StyledContainer";
+import ShareContent from "../share/ShareContent";
+import ProjectCards from "./ProjectCards";
+import ProjectContext from "./ProjectContext";
+import StudentSuggestionsContext from "./StudentSuggestionsContext";
+import TabContentBlock from "./TabContentBlock";
+import { TabContext } from "./TabContext";
+import UpdateContext from "./UpdateContext";
 
 const StyledTab = ({ children, onClick, active }) => {
   return (
@@ -36,7 +36,6 @@ const StyledTab = ({ children, onClick, active }) => {
 
 const Tab = ({ offsetTop }, ref) => {
   const [show, setShow] = useState(false);
-  console.log(offsetTop);
   const { activePane, setActivePane } = useContext(TabContext);
   return (
     <div ref={ref}>
@@ -65,20 +64,13 @@ const Tab = ({ offsetTop }, ref) => {
                       active={activeKey === "projectContent"}
                       onClick={() => onChange("projectContent")}
                     >
-                      計畫內容
+                      課程內容
                     </StyledTab>
                     <StyledTab
-                      active={activeKey === "projectUpdates"}
-                      onClick={() => onChange("projectUpdates")}
+                      active={activeKey === "projectChapter"}
+                      onClick={() => onChange("projectChapter")}
                     >
-                      計畫更新
-                      <Badge
-                        count={PROJECT_TIMELINE.length}
-                        style={{
-                          backgroundColor: "rgba(255, 255, 255, 0)",
-                          color: "#1ed3e0"
-                        }}
-                      />
+                      課程章節
                     </StyledTab>
                     <StyledTab
                       active={activeKey === "studentSuggestions"}
@@ -131,7 +123,15 @@ const Tab = ({ offsetTop }, ref) => {
         activeKey={activePane}
         onChange={setActivePane}
       >
-        <Tabs.TabPane key="projectContent" tab="計畫內容">
+        <Tabs.TabPane key="projectContent" tab="課程內容">
+          <StyledContainer>
+            <TabContentBlock
+              contentBlock={<ProjectContext />}
+              sideBlock={<ProjectCards />}
+            />
+          </StyledContainer>
+        </Tabs.TabPane>
+        <Tabs.TabPane key="projectChapter" tab="課程章節">
           <StyledContainer>
             <TabContentBlock
               contentBlock={<ProjectContext />}

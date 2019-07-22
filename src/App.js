@@ -1,16 +1,18 @@
+import { Col, Row } from "antd";
+import ApolloClient from "apollo-boost";
 import React, { useState } from "react";
-import { Row, Col } from "antd";
+import { ApolloProvider } from "react-apollo-hooks";
+import { animateScroll } from "react-scroll";
+import styled from "styled-components";
+import "./App.css";
+import Banner from "./component/common/Banner";
 import IntroInfo from "./component/intro/IntroContent";
 import IntroContent from "./component/intro/IntroInfo";
-import Tab from "./component/tab/Tab";
-import Styled from "styled-components";
 import StyledContainer from "./component/layout/StyledContainer";
-import Banner from "./component/common/Banner";
-import "./App.css";
-import { TabProvider, TabContext } from "./component/tab/TabContext";
-import { animateScroll } from "react-scroll";
+import Tab from "./component/tab/Tab";
+import { TabContext, TabProvider } from "./component/tab/TabContext";
 
-const StyledIntro = Styled.div`
+const StyledIntro = styled.div`
 padding: 20px 0px 28px;
 @media (min-width: 767px) {
   padding: 40px 0px 28px;
@@ -20,9 +22,11 @@ padding: 20px 0px 28px;
 const App = () => {
   const [isShowing, setIsShowing] = useState(true);
   const tabRef = React.createRef();
-  const CardRef = React.createRef();
+  const apolloClient = new ApolloClient({
+    uri: process.env.REACT_APP_GRAPHQL_ENDPOINT
+  });
   return (
-    <>
+    <ApolloProvider client={apolloClient}>
       <TabProvider>
         <TabContext.Consumer>
           {({ setActivePane }) => (
@@ -32,7 +36,6 @@ const App = () => {
                 setActivePane("support");
                 tabRef.current &&
                   animateScroll.scrollTo(tabRef.current.offsetTop + 300);
-                console.log(CardRef.current);
               }}
               isShowing={isShowing}
             />
@@ -50,9 +53,9 @@ const App = () => {
             </Row>
           </StyledIntro>
         </StyledContainer>
-        <Tab offsetTop={isShowing ? 50 : 0} ref={tabRef} />
+        <Tab offsetTop={isShowing ? 40 : 0} ref={tabRef} />
       </TabProvider>
-    </>
+    </ApolloProvider>
   );
 };
 

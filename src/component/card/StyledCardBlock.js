@@ -1,6 +1,6 @@
-import Styled from "styled-components";
+import styled from "styled-components";
 
-const StyledCardBlock = Styled.div`
+const StyledCardBlock = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.15);
   padding: 32px;

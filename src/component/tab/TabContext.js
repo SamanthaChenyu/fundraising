@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQueryParam, StringParam } from "use-query-params";
+import { StringParam, useQueryParam } from "use-query-params";
 
 export const TabContext = React.createContext();
 
@@ -25,20 +25,3 @@ export const TabProvider = ({ children }) => {
     </TabContext.Provider>
   );
 };
-
-{
-  /* <Provider>
-  {" "}
-  --> {(foo, bar)}
-  <div>
-    <p>useContext()</p>
-  </div>
-  <div>
-    <Consumer>
-      {({ foo, bar }) => {
-        return <div />;
-      }}
-    </Consumer>
-  </div>
-</Provider>; */
-}

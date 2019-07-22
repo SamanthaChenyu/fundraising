@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Styled from "styled-components";
-import ShareImage from "../../images/share.png";
 import { Modal } from "antd";
+import React, { useState } from "react";
+import styled from "styled-components";
+import ShareImage from "../../images/share.png";
 import ShareContent from "./ShareContent";
 
-const StyledShareIcon = Styled.div`
+const StyledShareIcon = styled.div`
 width: 20px;
 height: 20px;
   background-size: 20px 20px;

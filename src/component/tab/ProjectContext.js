@@ -1,23 +1,23 @@
-import React from "react";
-import TestImg from "./../../images/text.png";
-import Styled from "styled-components";
 import { Typography } from "antd";
+import React from "react";
+import styled from "styled-components";
+import TestImg from "./../../images/text.png";
 
 const { Title } = Typography;
 
-const StyledTitleDiv = Styled.div`
+const StyledTitleDiv = styled.div`
   font-size: 20px;
   border-left: 6px solid #1fd3e0;
   padding: 6px 12px 6px 12px;
   margin-bottom: 32px;
 `;
 
-const StyledDiv = Styled.div`
+const StyledDiv = styled.div`
   color: #000;
   margin: 32px 0px;
 `;
 
-const StyledTextP = Styled.p`
+const StyledTextP = styled.p`
   line-height: 1.75;
   letter-spacing: 0.2px;
   color: rgba(0, 0, 0, 0.85);

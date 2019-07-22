@@ -1,5 +1,5 @@
-import React from "react";
 import { Progress } from "antd";
+import React from "react";
 
 const ProgressBar = ({ percent }) => {
   return (

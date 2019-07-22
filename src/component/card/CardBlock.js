@@ -1,47 +1,47 @@
-import React, { useState, useCallback } from "react";
-import Styled from "styled-components";
-import { Typography, Button, Modal, Form } from "antd";
+import { Button, Form, Icon, Input, message, Modal, Typography } from "antd";
+import axios from "axios";
+import gql from "graphql-tag";
+import React, { useCallback, useState } from "react";
+import { useQuery } from "react-apollo-hooks";
+import NumberFormat from "react-number-format";
+import styled from "styled-components";
 import StyledCardBlock from "./StyledCardBlock";
-import EmailInput from "../common/EmailInput";
 
 const { Title, Text } = Typography;
 
-const StyledLine = Styled.div`
-background-color: #dcdcdc;
-height: 1px;
-width: 100%;
+const StyledLine = styled.div`
+  background-color: #dcdcdc;
+  height: 1px;
+  width: 100%;
+  margin-bottom: 24px;
 `;
 
-const StyleTitleBG = Styled.div`
-background-color: #f7fbfe;
-padding: 24px 20px;
+const StyleTitleBG = styled.div`
+  background-color: #f7fbfe;
+  padding: 24px 20px;
 `;
 
-const StyledError = Styled.div`
-margin: 24px 0px;
-&::after {
-  content: '*此為必填欄位';
+const StyledError = styled.div`
   color: red;
-}
 `;
 
-const StyledMargin = Styled.div`
-margin: 24px 0px;
+const StyledMargin = styled.div`
+  margin: 24px 0px;
 `;
 
-const StyledCardTitle = Styled.p`
+const StyledCardTitle = styled.p`
   font-size: 16px;
   font-weight: bold;
   margin: 8px 0px 24px 0px;
 `;
 
-const StyledCardContext = Styled.div`
+const StyledCardContext = styled.div`
   font-size: 14px;
   text-align: justify;
 `;
 
-const StyledPeople = Styled.div`
-  color:rgba(0, 0, 0, 0.45);
+const StyledPeople = styled.div`
+  color: rgba(0, 0, 0, 0.45);
   margin-top: 22px;
   margin-bottom: 12px;
   text-align: right;
@@ -49,14 +49,14 @@ const StyledPeople = Styled.div`
   align-items: baseline;
 `;
 
-const StyledFlex = Styled.div`
-display: flex;
-align-items: center;
+const StyledFlex = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
-const StyledSaleIcon = Styled.div`
-position: relative;
-cursor: pointer;
+const StyledSaleIcon = styled.div`
+  position: relative;
+  cursor: pointer;
   div {
     position: absolute;
     padding: 8px;
@@ -79,54 +79,67 @@ cursor: pointer;
   }
 `;
 
-const StyledCountdown = Styled.div`
-color: #2dd4e0;
-font-size: 16px;
-font-weight: bold;
-margin: 0px 5px;
+const StyledCountdown = styled.div`
+  color: #2dd4e0;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0px 5px;
 `;
 
-const CardBlock = (
-  {
-    salePrice,
-    listPrice,
-    onSale,
-    cardTitle,
-    people,
-    countdown,
-    children,
-    onClick,
-    onCancel,
-    visible,
-    BannerClick
-  },
-  ref
-) => {
-  const [emailValue, setEmailValue] = useState();
-  const [error, setError] = useState(false);
+const CardBlock = ({ form, plan, BannerClick }) => {
+  const [loading, setLoading] = useState();
+  const [check, setCheck] = useState({ discount: 0, totalPrice: 0 });
+  const [visible, setVisible] = useState(false);
   const [discount, setDiscount] = useState(false);
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      console.log(emailValue);
-      if (emailValue === undefined || emailValue.length === 0) {
-        setError(true);
-        console.log(error);
-      } else {
-        setError(false);
-        setDiscount(true);
-        console.log("扣一百");
-      }
+      form.validateFields((error, values) => {
+        if (!error) {
+          setLoading(true);
+          axios
+            .post(`${process.env.REACT_APP_BACKEND_ENDPOINT}/getPayForm`, {
+              planId: plan.id,
+              email: values.email,
+              code: values.code || "",
+              clientBackUrl: window.location.href,
+              notifyUrl: `${
+                process.env.REACT_APP_BACKEND_ENDPOINT
+              }/handleOrderNotification`
+            })
+            .then(({ data }) => {
+              document.write(data);
+            })
+            .catch(err => {
+              message.error(err.message);
+              setLoading(false);
+            });
+        }
+      });
     },
-    [emailValue, error]
+    [form, plan.id]
   );
+  const handleCheckGet = useCallback(() => {
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_ENDPOINT}/getCheck`, {
+        planId: plan.id,
+        code: form.getFieldValue("code") || ""
+      })
+      .then(({ data }) => {
+        if (data.discount === 0) {
+          message.error("無此折扣碼");
+        } else {
+          setCheck({ discount: data.discount, totalPrice: data.totalPrice });
+        }
+      })
+      .catch(err => message.error(err.message));
+  }, [form, plan.id]);
   return (
     <>
       <StyledCardBlock
-        ref={ref}
         className={BannerClick ? `TranslateBackground` : `InitialBackground`}
       >
-        {onSale && (
+        {plan && plan.onSale && (
           <StyledSaleIcon>
             <div>限時推薦</div>
           </StyledSaleIcon>
@@ -134,93 +147,128 @@ const CardBlock = (
         <StyledFlex>
           <Title
             level={3}
-            style={{ marginRight: "5px", marginBottom: 0, color: "#1ed3e0" }}
+            style={{ marginRight: "5px", marginBottom: 0, color: "#ff812c" }}
           >
-            {salePrice}
+            <NumberFormat
+              value={plan && plan.salePrice}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"NT$"}
+            />
           </Title>
-          {listPrice && (
+          {plan && plan.listPrice && (
             <Text delete style={{ color: "rgba(0, 0, 0, 0.45)" }}>
-              {listPrice}
+              <NumberFormat
+                value={plan.listPrice}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"NT$"}
+              />
             </Text>
           )}
         </StyledFlex>
 
-        <StyledCardTitle>{cardTitle}</StyledCardTitle>
-        <StyledCardContext>{children}</StyledCardContext>
+        <StyledCardTitle>{plan && plan.title}</StyledCardTitle>
+        <StyledCardContext
+          dangerouslySetInnerHTML={{ __html: plan && plan.description }}
+        />
         <StyledFlex style={{ justifyContent: "space-between" }}>
-          {countdown ? (
+          {plan && plan.discountTo ? (
             <StyledPeople>
               <Text type="warning">優惠倒數</Text>
-              <StyledCountdown>{countdown}</StyledCountdown>
+              <StyledCountdown>{plan.discountTo}</StyledCountdown>
             </StyledPeople>
           ) : (
             <div />
           )}
-          <StyledPeople>{people}人</StyledPeople>
+          <StyledPeople>
+            {(plan && plan.sales && plan.sales.sum) || 0}人
+          </StyledPeople>
         </StyledFlex>
         <Button
           type="primary"
           size="large"
           style={{ width: "100%" }}
-          onClick={onClick}
+          onClick={() => setVisible(true)}
         >
           支持此專案
         </Button>
       </StyledCardBlock>
-      <Modal centered footer={null} visible={visible} onCancel={onCancel}>
+      <Modal
+        centered
+        footer={null}
+        visible={visible}
+        onCancel={() => setVisible(false)}
+      >
         <StyledMargin style={{ textAlign: "center", fontSize: "16px" }}>
           <Text strong>支付項目</Text>
         </StyledMargin>
-        <StyleTitleBG>{cardTitle}</StyleTitleBG>
-        <StyledMargin>{children}</StyledMargin>
+        <StyleTitleBG>{plan && plan.title}</StyleTitleBG>
+        <StyledMargin
+          dangerouslySetInnerHTML={{ __html: plan && plan.description }}
+        />
         <StyledLine />
-        <StyledMargin>請輸入信箱</StyledMargin>
-
         <Form onSubmit={handleSubmit}>
-          {error ? (
-            <>
-              <StyledError>
-                <EmailInput
-                  style={{ border: "red 1px solid" }}
-                  value={emailValue}
-                  onChange={e => setEmailValue(e.currentTarget.value)}
+          <Form.Item label="請輸入信箱">
+            {form.getFieldDecorator("email", {
+              rules: [
+                { required: true, message: "此為必填欄位" },
+                { type: "email", message: "email 格式錯誤" }
+              ]
+            })(<Input />)}
+          </Form.Item>
+
+          {discount ? (
+            <div className="d-flex align-items-center mb-3">
+              {form.getFieldDecorator("code")(
+                <Input
+                  autoFocus
+                  className="flex-grow-1 mr-2"
+                  placeholder="請輸入折扣碼"
                 />
-              </StyledError>
-            </>
+              )}
+              <Button className="mr-2" onClick={handleCheckGet}>
+                確認
+              </Button>
+              <Icon
+                type="cross"
+                onClick={() => {
+                  setDiscount(false);
+                  setCheck({ ...check, discount: 0 });
+                }}
+              />
+            </div>
           ) : (
-            <>
-              <StyledMargin>
-                <EmailInput
-                  value={emailValue}
-                  onChange={e => setEmailValue(e.currentTarget.value)}
-                />
-              </StyledMargin>
-            </>
+            <div
+              style={{ color: "#ff812c", cursor: "pointer" }}
+              onClick={() => setDiscount(!discount)}
+            >
+              使用折扣碼？
+            </div>
           )}
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
-              lineHeight: "35px"
-            }}
-          >
-            {discount ? <Text>回饋折抵 -NT$100 =　</Text> : " "}
-            <Title
-              level={3}
+          <div className="d-flex justify-content-end align-items-center">
+            {check.discount ? (
+              <Text>回饋折抵 -NT${check.discount} =　</Text>
+            ) : null}
+            <span
               style={{
-                marginRight: "5px",
-                marginBottom: 0,
-                color: "#1ed3e0",
-                textAlign: "right"
+                color: "#ff812c",
+                fontSize: "24px",
+                fontWeight: "600"
               }}
             >
-              {salePrice}
-            </Title>
+              <NumberFormat
+                value={plan && plan.salePrice - check.discount}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"NT$"}
+              />
+            </span>
           </div>
           <div style={{ textAlign: "right", marginTop: "16px" }}>
             <Button
+              loading={loading}
               type="primary"
               size="large"
               htmlType="submit"
@@ -235,4 +283,4 @@ const CardBlock = (
   );
 };
 
-export default React.forwardRef(CardBlock);
+export default Form.create()(CardBlock);

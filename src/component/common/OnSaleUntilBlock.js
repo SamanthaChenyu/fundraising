@@ -1,6 +1,5 @@
-import React from "react";
 import "antd/dist/antd.css";
-import { Typography } from "antd";
+import React from "react";
 import styled from "styled-components";
 
 const StyledOnSaleUntilBlock = styled.div`

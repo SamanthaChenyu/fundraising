@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import ProgressBar from "./ProgressBar";
-import FundraisingAmount from "./FundraisingAmount";
 import NumberFormat from "react-number-format";
+import styled from "styled-components";
+import FundraisingAmount from "./FundraisingAmount";
+import ProgressBar from "./ProgressBar";
 
 const StyledFundProgressBlock = styled.div`
   display: flex;
@@ -18,13 +18,13 @@ const StyledFundProgressBlock = styled.div`
   }
 `;
 
-const FundProgressBlock = ({ percent }) => {
+const FundProgressBlock = ({ totalAmount, targetAmount, totalSponsors }) => {
   return (
     <StyledFundProgressBlock>
       <FundraisingAmount
         money={
           <NumberFormat
-            value={23917345}
+            value={totalAmount}
             displayType={"text"}
             thousandSeparator={true}
             prefix={"NT$"}
@@ -32,7 +32,7 @@ const FundProgressBlock = ({ percent }) => {
         }
         target={
           <NumberFormat
-            value={1000000}
+            value={targetAmount}
             displayType={"text"}
             thousandSeparator={true}
             prefix={"NT$"}
@@ -40,13 +40,13 @@ const FundProgressBlock = ({ percent }) => {
         }
         sponsors={
           <NumberFormat
-            value={4832}
+            value={totalSponsors}
             displayType={"text"}
             thousandSeparator={true}
           />
         }
       />
-      <ProgressBar percent={92} />
+      <ProgressBar percent={((totalAmount / targetAmount) * 100).toFixed(0)} />
     </StyledFundProgressBlock>
   );
 };

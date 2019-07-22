@@ -1,20 +1,20 @@
-import React from "react";
 import { Timeline, Typography } from "antd";
-import Styled from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import { PROJECT_TIMELINE } from "../../data";
 
 const { Title, Text } = Typography;
 
-const StyledTimeLime = Styled.div`
+const StyledTimeLime = styled.div`
 width: 90%;
 margin: auto;
 `;
 
-const StyledText = Styled.div`
+const StyledText = styled.div`
 padding: 12px 0px;
 `;
 
-const StyledTimeLimeItem = Styled.div`
+const StyledTimeLimeItem = styled.div`
 padding-left: 12px;
 `;
 

@@ -1,6 +1,6 @@
-import Styled from "styled-components";
+import styled from "styled-components";
 
-const StyledContainer = Styled.div`
+const StyledContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0px 15px;

@@ -1,9 +1,9 @@
+import { Button, Col, Row } from "antd";
 import React, { useState } from "react";
-import { Row, Col, Button } from "antd";
-import Styled from "styled-components";
 import MediaQuery from "react-responsive";
+import styled from "styled-components";
 
-const StyledMBOpenButton = Styled.div`
+const StyledMBOpenButton = styled.div`
   margin-bottom: 41px;
   position: relative;
   &:before {
@@ -16,16 +16,16 @@ const StyledMBOpenButton = Styled.div`
   }
 `;
 
-const StyledMBContentBlock = Styled.div`
+const StyledMBContentBlock = styled.div`
 height: 515px;
 overflow: hidden;
 `;
 
-const StyledTabContentBlock = Styled.div`
+const StyledTabContentBlock = styled.div`
   padding: 24px 0px 40px;
 `;
 
-const StyledCol = Styled.div`
+const StyledCol = styled.div`
     column-count: 1;
     column-gap: 0;
     @media (min-width: 767px) {
@@ -33,7 +33,7 @@ const StyledCol = Styled.div`
     }
 `;
 
-const StyledColDiv = Styled.div`
+const StyledColDiv = styled.div`
 width: 100%;
 margin: 0 auto; 
 @media (min-width: 767px) {
@@ -41,7 +41,7 @@ margin: 0 auto;
 }
 `;
 
-const StyledSideBlock = Styled.div`
+const StyledSideBlock = styled.div`
     box-sizing: border-box;
     width: 100%;
     padding: 0px 0px;

@@ -1,17 +1,17 @@
-import React from "react";
-import Styled from "styled-components";
-import ShareCashImage from "../../images/share_cash.png";
 import { Typography } from "antd";
+import React from "react";
+import styled from "styled-components";
+import ShareCashImage from "../../images/share_cash.png";
 import ShareForm from "./ShareForm";
 
 const { Title, Text } = Typography;
 
-const StyledShareCashImage = Styled.div`
+const StyledShareCashImage = styled.div`
 width: 158px;
 margin: 0 auto;
 `;
 
-const StyledTextBlock = Styled.div`
+const StyledTextBlock = styled.div`
 width: 220px;
 margin: 24px auto;
 text-align: justify;
@@ -20,7 +20,7 @@ text-align: justify;
   }
 `;
 
-const StyledBlock = Styled.div`
+const StyledBlock = styled.div`
 width: 220px;
 margin: 12px auto;
 @media (min-width: 1199px) {
