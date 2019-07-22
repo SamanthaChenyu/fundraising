@@ -14,7 +14,7 @@ const StyledContextTitle = Styled.div`
     width: 100%;
     font-size: 24px;
     @media (min-width: 767px) {
-      width: 230px;
+      width: 100%;
       font-size: 38px;
       letter-spacing: 0.4px;
     }
@@ -29,10 +29,16 @@ const IntroInfo = () => {
   return (
     <ContextBox>
       <Title level={1}>
-        <StyledContextTitle>OO設計學院募資計畫</StyledContextTitle>
+        <StyledContextTitle>
+          股票投資全攻略
+          <br />
+          用Excel打造你的「高勝率投資工具」
+        </StyledContextTitle>
       </Title>
       <Text style={{ color: "#000", fontSize: "16px" }}>
-        一張獲取更多工作機會的門票，從搞定多益英文開始，獲取更多工作機會
+        不用會寫程式，只使用直覺式的Excel就能完成選股分析<br />
+        不用每天盯盤，一個月只看一次盤，照樣平均年賺15%<br />
+        股票實戰全攻略，讓你學完就可以直接上場操作！
       </Text>
       <FundProgressBlock />
       <CountdownTimeBlock />

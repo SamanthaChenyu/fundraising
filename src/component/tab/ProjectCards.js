@@ -33,17 +33,37 @@ const ProjectCards = () => {
         visible={modal1Visible}
         salePrice={
           <NumberFormat
-            value={699}
+            value={7280}
             displayType={"text"}
             thousandSeparator={true}
             prefix={"NT$"}
           />
         }
-        cardTitle="認同我們的理念，純粹贊助計畫！"
+        listPrice={
+          <NumberFormat
+            value={15000}
+            displayType={"text"}
+            thousandSeparator={true}
+            prefix={"NT$"}
+          />
+        }
+        cardTitle="股票全攻略組合包"
         people={139}
       >
-        支持台灣青年勇敢突破分數門檻，勇闖自己夢想的世界舞台！一起為台灣向這個世界用力發聲！支持計畫後，
-        AmazingTalker 將贈等值抵用卷，可在 AmazingTalker 任意使用學習任何語言。
+        包含項目
+        <ul>
+          <li>經典股票課程 (超過600分鐘)</li>
+          <li>如何選擇股票課程(超過400分鐘)</li>
+          <li>買賣時機點的選擇課程(超過400分鐘)</li>
+          <li>課程完整講義下載</li>
+          <li>Excel 示範模板下載 </li>
+        </ul>
+        優惠期間購買再加碼
+        <ul>
+          <li>可免費參加葉教授實體課程 (一次)</li>
+          <li>有機會抽中「萬元」投資金 </li>
+          <li>有機會抽中「IphoneXS」</li>
+        </ul>
       </CardBlock>
 
       <CardBlock
