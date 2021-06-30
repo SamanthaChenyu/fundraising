@@ -24,7 +24,7 @@ const StyledBlock = Styled.div`
 width: 220px;
 margin: 12px auto;
 @media (min-width: 1199px) {
-  width: 280px;
+  width: 100%;
   }
 `;
 
