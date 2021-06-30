@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/fundraising/static/css/main.093712c9.chunk.css",
+    "main.js": "/fundraising/static/js/main.645edf6d.chunk.js",
+    "main.js.map": "/fundraising/static/js/main.645edf6d.chunk.js.map",
+    "runtime~main.js": "/fundraising/static/js/runtime~main.ba8d27ca.js",
+    "runtime~main.js.map": "/fundraising/static/js/runtime~main.ba8d27ca.js.map",
+    "static/css/2.270ac04a.chunk.css": "/fundraising/static/css/2.270ac04a.chunk.css",
+    "static/js/2.836250f6.chunk.js": "/fundraising/static/js/2.836250f6.chunk.js",
+    "static/js/2.836250f6.chunk.js.map": "/fundraising/static/js/2.836250f6.chunk.js.map",
+    "index.html": "/fundraising/index.html",
+    "precache-manifest.91c4b7e6735b26f4ca396767d93ac6f7.js": "/fundraising/precache-manifest.91c4b7e6735b26f4ca396767d93ac6f7.js",
+    "service-worker.js": "/fundraising/service-worker.js",
+    "static/css/2.270ac04a.chunk.css.map": "/fundraising/static/css/2.270ac04a.chunk.css.map",
+    "static/css/main.093712c9.chunk.css.map": "/fundraising/static/css/main.093712c9.chunk.css.map",
+    "static/media/share_cash.png": "/fundraising/static/media/share_cash.111a72c1.png",
+    "static/media/text.png": "/fundraising/static/media/text.7f77adfc.png",
+    "static/media/text2.png": "/fundraising/static/media/text2.00ffa484.png"
+  }
+}
